@@ -17,7 +17,16 @@ const ShowSelection = () => {
     { name: "Inox: Insignia", times: ["09:00 AM", "12:45 PM", "04:00 PM", "08:15 PM"] }
   ];
 
+  // UPDATED: Added the login check guard here
   const handleTimeSelect = (theaterName, timeSlot) => {
+    const userId = localStorage.getItem('userId'); 
+
+    if (!userId) {
+      alert("Please login to select a showtime and book your ticket!");
+      navigate('/login');
+      return; 
+    }
+
     navigate(`/book/${id}`, { 
       state: { 
         movie: movie, 
@@ -42,7 +51,7 @@ const ShowSelection = () => {
           </div>
         </div>
 
-        {/* --- NEW: MOVIE TRAILER SECTION --- */}
+        {/* --- MOVIE TRAILER SECTION --- */}
         {movie?.trailerId ? (
           <div className="mb-10">
             <div className="rounded-2xl overflow-hidden shadow-xl aspect-video bg-black border-4 border-white">

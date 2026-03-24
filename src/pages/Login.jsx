@@ -17,8 +17,10 @@ const Login = () => {
       const response = await axios.post('https://movie-booking-backend-mebh.onrender.com/api/users/login', formData);
       
       localStorage.setItem('token', response.data.token);
-        localStorage.setItem('userName', response.data.name || "User"); 
-        localStorage.setItem('userId', response.data.userId);
+      localStorage.setItem('userName', response.data.name || "User"); 
+      localStorage.setItem('userId', response.data.userId);
+      // --- NEW: SAVE THE ROLE ---
+      localStorage.setItem('role', response.data.role || "user"); 
       
       navigate('/'); 
       window.location.reload(); // Refresh to update the Navbar immediately
